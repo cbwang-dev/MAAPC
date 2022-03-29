@@ -18,6 +18,8 @@ B=[0;
    0;
    c*(eta_m*eta_g*K_t*K_g)/(R_m*E);
    b*(eta_m*eta_g*K_t*K_g)/(R_m*E)];
+% TODO: In the assignment: The matrices C and D must be determined based on the
+% sensors present in the setup. Can I define C and D as below?
 C=eye(2,4);   % we can only measure alpha and theta
 D=zeros(2,1); % we can only measure alpha and theta
 save('lin_ss_model.mat','A','B','C','D');
@@ -66,7 +68,7 @@ fprintf("> The system has %d controllable states.\n",rank(co));
 fprintf("controllability: PBH test:\n")
 [V,d] = eig(A');
 co = B'*V;
-for i_co = co'
+for i_co = co
     if i_co == 0
         fprintf("The system is not controllable.\n");
         break;
@@ -79,5 +81,5 @@ oo = obsv(sys);
 fprintf("observability:\n")
 fprintf("> The system has %d states.\n",length(A));
 fprintf("> The system has %d observable states.\n",rank(oo));
-
+fprintf("===============================================\n\n");
 close all

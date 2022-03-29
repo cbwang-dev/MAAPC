@@ -13,6 +13,27 @@ eta_m = 0.69;  % motor efficiency
 K_g = 70;      % (70:1) the gearbox ratio, the output is slower
 eta_g = 0.9;   % the gearbox efficiency
 B_eq = 0.004;  % (Nm/(rad/s)) equivalent viscous damping coefficient
-%% calculated parameters
-J_cm = (1/12)*m*(2*L)^2;% (kg*m^2) the rod inertia about the center of mass
+
+%% tuning LQR parameters
+% 
+
+% different Q and R matrixes
+trial = 'default';
+switch trial
+case 'default'
+  description = 'default scenario in the assignment.';
+  Q = [4 0  0 0;
+       0 20 0 0;
+       0 0  0 0;
+       0 0  0 0];
+  R = 1.5;
+case  'trial_1' 
+  description = 'reduce R to 1 w.r.t default scenario. Increase motor voltage.';
+  Q = [4 0  0 0;
+       0 20 0 0;
+       0 0  0 0;
+       0 0  0 0];
+  R = 1;
+end
+
 fprintf("parameters registered.\n")
