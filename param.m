@@ -15,4 +15,4 @@ eta_g = 0.9;   % the gearbox efficiency
 B_eq = 0.004;  % (Nm/(rad/s)) equivalent viscous damping coefficient
 %% calculated parameters
 J_cm = (1/12)*m*(2*L)^2;% (kg*m^2) the rod inertia about the center of mass
-fprintf("Parameters registered.\n")
+fprintf("parameters registered.\n")
