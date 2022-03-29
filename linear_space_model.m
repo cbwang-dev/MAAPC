@@ -16,8 +16,8 @@ A=[0 0     1      0;
    0 a*d/E -b*G/E 0];
 B=[0;
    0;
-   c*(Mum*Mug*Kt*Kg)/(Rm*E);
-   b*(Mum*Mug*Kt*Kg)/(Rm*E)];
+   c*(eta_m*eta_g*K_t*K_g)/(R_m*E);
+   b*(eta_m*eta_g*K_t*K_g)/(R_m*E)];
 C=eye(2,4);
 D=zeros(2,1);
 
