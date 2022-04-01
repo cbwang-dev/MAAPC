@@ -22,8 +22,8 @@ B=[0;
 % sensors present in the setup. Can I define C and D as below?
 C=eye(2,4);   % we can only measure alpha and theta
 D=zeros(2,1); % we can only measure alpha and theta
-save('lin_ss_model.mat','A','B','C','D');
-fprintf("saved linear state-space model in lin_ss_model.mat. \n");
+save('./rip/lin_ss_model.mat','A','B','C','D');
+fprintf("saved linear state-space model in ./rip/lin_ss_model.mat. \n");
 
 % simulate the state space model
 sys = ss(A,B,C,D);
@@ -33,17 +33,17 @@ fprintf("linear state-space model created, in variable sys.\n")
 
 % step response
 fig_step_response = figure();step(sys);
-saveas(fig_step_response,'./plots/1_step_response.png');
+saveas(fig_step_response,'./rip/plots/1_step_response.png');
 clear fig_impulse_response;
 
 % impulse response
 fig_impulse_response=figure();impulse(sys);
-saveas(fig_impulse_response,'./plots/1_impulse_response.png');
+saveas(fig_impulse_response,'./rip/plots/1_impulse_response.png');
 clear fig_step_response;
 
 % pole-zero map
 fig_pzmap = figure();pzmap(sys);
-saveas(fig_pzmap,'./plots/1_pzmap.png');
+saveas(fig_pzmap,'./rip/plots/1_pzmap.png');
 clear fig_pzmap;
 
 % stability
@@ -53,7 +53,6 @@ for pole=poles'
         fprintf("The system is unstable with a pole %f.\n",pole);
         break;
     end
-    fprintf("The system is stable.\n");
 end
 
 % transmission zeros

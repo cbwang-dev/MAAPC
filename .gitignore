@@ -64,6 +64,9 @@ codegen/
 # Octave session info
 octave-workspace
 
+rip/note.md
+rip/note.pdf
+quadc/note.md
+quadc/note.pdf
+
 # End of https://www.toptal.com/developers/gitignore/api/macos,matlab
-note.md
-note.pdf

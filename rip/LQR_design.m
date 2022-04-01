@@ -1,6 +1,6 @@
 % be sure that this file run after running param.m and lin_state_space.m.
 % TODO is digitalization necessary for this part?
-load lin_ss_model.mat
+load ./rip/lin_ss_model.mat
 sys = ss(A,B,C,D);
 fprintf('===============================================\n')
 fprintf('=========== starting trial: %s ===========\n', trial)
