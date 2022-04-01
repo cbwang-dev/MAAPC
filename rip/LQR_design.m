@@ -2,9 +2,9 @@
 % TODO is digitalization necessary for this part?
 load ./rip/lin_ss_model.mat
 sys = ss(A,B,C,D);
+
 fprintf('===============================================\n')
-fprintf('=========== starting trial: %s ===========\n', trial)
-fprintf('description: %s\n', description)
+fprintf('=========== starting trial: %s ===========\n', trial_name)
 [K,~,~] = lqr(sys,Q,R);
 % TODO draw and reason the simulink block.
 fprintf('completed simulation, now analyzing...\n');

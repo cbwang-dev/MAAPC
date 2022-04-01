@@ -15,25 +15,30 @@ eta_g = 0.9;   % the gearbox efficiency
 B_eq = 0.004;  % (Nm/(rad/s)) equivalent viscous damping coefficient
 
 %% tuning LQR parameters
-% 
 
-% different Q and R matrixes
-trial = 'default';
-switch trial
-case 'default'
-  description = 'default scenario in the assignment.';
-  Q = [4 0  0 0;
-       0 20 0 0;
-       0 0  0 0;
-       0 0  0 0];
-  R = 1.5;
-case  'trial_1' 
-  description = 'reduce R to 1 w.r.t default scenario. Increase motor voltage.';
-  Q = [4 0  0 0;
-       0 20 0 0;
-       0 0  0 0;
-       0 0  0 0];
-  R = 1;
+trial_LUT(1).index = 1;
+trial_LUT(1).name = 'default';
+trial_LUT(1).description = 'default scenario in the assignment.';
+trial_LUT(1).Q = [4 0  0 0;
+                  0 20 0 0;
+                  0 0  0 0;
+                  0 0  0 0];
+trial_LUT(1).R = 1.5;
+
+trial_LUT(2).index = 2;
+trial_LUT(2).name = 'trial_1';
+trial_LUT(2).description = 'reduce R to 1 w.r.t default scenario. Increase motor voltage.';
+trial_LUT(2).Q = [4 0  0 0;
+                  0 20 0 0;
+                  0 0  0 0;
+                  0 0  0 0];
+trial_LUT(2).R = 1;
+
+trial_display_str = '========= trial name choices start ============\n';
+trial_display_str = strcat(trial_display_str, 'index\tname\tdescription\n');
+for i=1:length(trial_LUT)
+  trial_display_str = strcat(trial_display_str, num2str(trial_LUT(i).index), '\t', trial_LUT(i).name, '\t', trial_LUT(i).description, '\n');
 end
+trial_display_str = strcat(trial_display_str, '============ trial name choices end ===========\n\n');
 
 fprintf("parameters registered.\n")

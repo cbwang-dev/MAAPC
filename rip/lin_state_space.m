@@ -1,4 +1,4 @@
-fprintf("===============================================\n");
+fprintf("\n===============================================\n");
 fprintf("==== calculating linear state-space model. ====\n");
 
 % calculate useful parameters for state-space model, chapter 2.1.3
@@ -23,7 +23,7 @@ B=[0;
 C=eye(2,4);   % we can only measure alpha and theta
 D=zeros(2,1); % we can only measure alpha and theta
 save('./rip/lin_ss_model.mat','A','B','C','D');
-fprintf("saved linear state-space model in ./rip/lin_ss_model.mat. \n");
+fprintf("saved matrixes A, B, C, D of linear state-space model in ./rip/lin_ss_model.mat.\n");
 
 % simulate the state space model
 sys = ss(A,B,C,D);
