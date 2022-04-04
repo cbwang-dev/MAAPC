@@ -20,6 +20,8 @@ B=[0;
    b*(eta_m*eta_g*K_t*K_g)/(R_m*E)];
 % TODO: In the assignment: The matrices C and D must be determined based on the
 % sensors present in the setup. Can I define C and D as below?
+%Gaetan answer: Yes it is stated in the first paragraph of 2.2 and 2.3 in the
+%assignment that only alpha and theta are measured. 
 C=eye(2,4);   % we can only measure alpha and theta
 D=zeros(2,1); % we can only measure alpha and theta
 save('./rip/lin_ss_model.mat','A','B','C','D');
