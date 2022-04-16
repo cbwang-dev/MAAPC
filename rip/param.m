@@ -34,6 +34,33 @@ trial_LUT(2).Q = [4 0  0 0;
                   0 0  0 0];
 trial_LUT(2).R = 1;
 
+trial_LUT(3).index = 3;
+trial_LUT(3).name = 'trial_2';
+trial_LUT(3).description = 'double R to 3 w.r.t default scenario. Decrease motor voltage.';
+trial_LUT(3).Q = [4 0  0 0;
+                  0 20 0 0;
+                  0 0  0 0;
+                  0 0  0 0];
+trial_LUT(3).R = 3;
+
+trial_LUT(4).index = 4;
+trial_LUT(4).name = 'trial_3';
+trial_LUT(4).description = 'half Q elements w.r.t default scenario. Increase state values x. (only theta and alpha)';
+trial_LUT(4).Q = [2 0  0 0;
+                  0 10 0 0;
+                  0 0  0 0;
+                  0 0  0 0];
+trial_LUT(4).R = 1.5;
+
+trial_LUT(5).index = 5;
+trial_LUT(5).name = 'trial_4';
+trial_LUT(5).description = 'double Q elements w.r.t default scenario. Increase state weighting.';
+trial_LUT(5).Q = [8 0  0 0;
+                  0 40 0 0;
+                  0 0  0 0;
+                  0 0  0 0];
+trial_LUT(5).R = 1.5;
+
 trial_display_str = '========= trial name choices start ============\n';
 trial_display_str = strcat(trial_display_str, 'index\tname\tdescription\n');
 for i=1:length(trial_LUT)
