@@ -6,7 +6,7 @@ load ./rip/lin_ss_model.mat
 C = eye(4);
 D = zeros(4,1);
 sys = ss(A,B,C,D);
-trial_index  = 5;
+trial_index  = 4;
 fprintf('===============================================\n')
 fprintf('=========== starting trial: %s ===========\n', trial_LUT(trial_index).name)
 [K,~,~] = lqr(sys,trial_LUT(trial_index).Q,trial_LUT(trial_index).R);
@@ -24,15 +24,15 @@ theta_diff_out = simOut.logsout{3};
 alpha_diff_out = simOut.logsout{4};
 u_control = simOut.logsout{5};
 
-figure('units','normalized','outerposition',[0 0 1 1])
+fig_state = figure('units','normalized','outerposition',[0 0 1 1]);
 plot(simOut.tout,state_seq.Values.data)
 legend('theta','alpha', 'dif theta', 'dif alpha')
 title('Model state response')
 xlabel('time [s]')
 ylabel('angle (rad)/ angular velocity (rad/s)')
-saveas(gcf,strcat('rip/plots/Q_and_R_plots/Set_index_',int2str(trial_index),'/sim_state.png'))
-
-figure('units','normalized','outerposition',[0 0 1 1])
+saveas(fig_state,strcat('rip/plots/Q_and_R_plots/Set_index_',int2str(trial_index),'/sim_state.png'))
+clear fig_state;
+fig_out = figure('units','normalized','outerposition',[0 0 1 1]);
 subplot(4,1,1)
 plot(simOut.tout, theta_out.Values.data)
 title('Simulink Output of the theta angle (equal to the state)')
@@ -53,14 +53,15 @@ plot(simOut.tout, alpha_diff_out.Values.data)
 title('Simulink Output of the alpha diff angle (equal to the state)')
 xlabel('time [s]')
 ylabel('angular velocity (rad/s)')
-saveas(gcf,strcat('rip/plots/Q_and_R_plots/Set_index_',int2str(trial_index),'/sim_out.png'))
-
-figure('units','normalized','outerposition',[0 0 1 1])
-plot(simOut.tout, u_control.Values.data)
+saveas(fig_out,strcat('rip/plots/Q_and_R_plots/Set_index_',int2str(trial_index),'/sim_out.png'))
+clear fig_out;
+fig_control = figure('units','normalized','outerposition',[0 0 1 1]);
+plot(simOut.tout, u_control.Values.data);
 title('Simulink Control signal u = -K*(x-xd)')
 xlabel('time [s]')
 ylabel('Voltage [V]')
-saveas(gcf,strcat('rip/plots/Q_and_R_plots/Set_index_',int2str(trial_index),'/sim_control.png'))
+saveas(fig_control,strcat('rip/plots/Q_and_R_plots/Set_index_',int2str(trial_index),'/sim_control.png'))
+clear fig_control;
 %% Analysis of closed loop properties
 % closed loop eigenvalues (pole-zero plot)
 % step response: settling-time, rise-time, overshoot, amount of input-signal, ...
@@ -92,17 +93,19 @@ saveas(gcf,strcat('rip/plots/Q_and_R_plots/Set_index_',int2str(trial_index),'/si
 
 %Method 3: Proposed method in the inverted pendulum example on toledo
 %Other source: http://mocha-java.uccs.edu/ECE5520/ECE5520-CH06.pdf
+%+ page 100 in Handbook
 A_feedback = A - B*K;
 B_feedback = B;
 C_feedback = C;
 D_feedback = D; 
 sys_cl = ss(A_feedback,B_feedback,C_feedback,D_feedback);
-
+save('./rip/lin_cl_ss_model.mat','A_feedback','B_feedback','C_feedback','D_feedback');
 %closed loop poles
-figure('units','normalized','outerposition',[0 0 1 1])
+fig_pz = figure('units','normalized','outerposition',[0 0 1 1]);
 pzmap(sys_cl)
 [p_cl,z_cl] = pzmap(sys_cl);
-saveas(gcf,strcat('rip/plots/Q_and_R_plots/Set_index_',int2str(trial_index),'/pzmap.png'))
+saveas(fig_pz,strcat('rip/plots/Q_and_R_plots/Set_index_',int2str(trial_index),'/pzmap.png'))
+clear fig_pz;
 % All poles in left half plane => stable. 
 
 %step response: 
@@ -111,17 +114,19 @@ saveas(gcf,strcat('rip/plots/Q_and_R_plots/Set_index_',int2str(trial_index),'/pz
 %but it is not supported by the stepinfo function.
 opt = stepDataOptions('InputOffset',-1,'StepAmplitude',2);
 
-figure('units','normalized','outerposition',[0 0 1 1])
+fig_step = figure('units','normalized','outerposition',[0 0 1 1]);
 %step(sys_cl,5,opt)
 step(sys_cl,5)
 S = stepinfo(sys_cl);
-saveas(gcf,strcat('rip/plots/Q_and_R_plots/Set_index_',int2str(trial_index),'/step.png'))
+saveas(fig_step,strcat('rip/plots/Q_and_R_plots/Set_index_',int2str(trial_index),'/step.png'))
+clear fig_step;
 
 %Impulse response
-figure('units','normalized','outerposition',[0 0 1 1])
+fig_imp = figure('units','normalized','outerposition',[0 0 1 1]);
 impulse(sys_cl,5)
 [wn, zeta] = damp(sys_cl);
-saveas(gcf,strcat('rip/plots/Q_and_R_plots/Set_index_',int2str(trial_index),'/imp.png'))
+saveas(fig_imp,strcat('rip/plots/Q_and_R_plots/Set_index_',int2str(trial_index),'/imp.png'))
+clear fig_imp;
 
 %Printing system properties (see book p. 78-79)
 % The values for the overshoot/undershoot and settlingtime are weird.
