@@ -53,13 +53,31 @@ trial_LUT(4).Q = [2 0  0 0;
 trial_LUT(4).R = 1.5;
 
 trial_LUT(5).index = 5;
-trial_LUT(5).name = 'trial_4';
+trial_LUT(5).name = 'trial_5';
 trial_LUT(5).description = 'double Q elements w.r.t default scenario. Increase state weighting.';
 trial_LUT(5).Q = [8 0  0 0;
                   0 40 0 0;
                   0 0  0 0;
                   0 0  0 0];
 trial_LUT(5).R = 1.5;
+
+trial_LUT(6).index = 6;
+trial_LUT(6).name = 'trial_6';
+trial_LUT(6).description = 'quadruple Q elements w.r.t default scenario. Increase state weighting.';
+trial_LUT(6).Q = [16 0  0 0;
+                  0 80 0 0;
+                  0 0  0 0;
+                  0 0  0 0];
+trial_LUT(6).R = 1.5;
+
+trial_LUT(7).index = 7;
+trial_LUT(7).name = 'trial_7';
+trial_LUT(7).description = '8x Q elements w.r.t default scenario. Increase state weighting.';
+trial_LUT(7).Q = [32 0  0 0;
+                  0 160 0 0;
+                  0 0  0 0;
+                  0 0  0 0];
+trial_LUT(7).R = 1.5;
 
 trial_display_str = '========= trial name choices start ============\n';
 trial_display_str = strcat(trial_display_str, 'index\tname\tdescription\n');
