@@ -17,8 +17,8 @@ if experiment_scenario == "setPointTracking"
   x0 = x0; % initial state not changed in set point tracking, still zero * 4.
   xd = [setpoint_theta*pi/180, 0, 0, 0]; % degree to radian conversion
 elseif experiment_scenario == "disturbanceRejection"
-  disturbance_alpha = 30; % disturbance over alpha, in degrees
-  x0 = [0, disturbance_alpha, 0, 0]; % initial state of the system is updated
+  disturbance_alpha = 30; % disturbance over alpha, in degrees. We can check on the boundary values of this disturbance.
+  x0 = [0, disturbance_alpha*pi/180, 0, 0]; % initial state of the system is updated
   xd = xd; % desired state not changed in disturbance rejection, still zero * 4.
 else
   error("Unknown experiment scenario");
@@ -117,8 +117,8 @@ for i = 1:length(trial_LUT) % conduct independent experiments.
   %% ========================================= %%
 
   % parameters out, if simulink diagram is changed, modify the corresponding mappings
-  state_seq_diff_alpha = simOut.logsout{1}; % outport of discrete derivative,  discrete derivative of theta
-  state_seq_diff_theta = simOut.logsout{2}; % outport of discrete derivative1, discrete derivative of alpha
+  state_seq_diff_theta = simOut.logsout{1}; % outport of discrete derivative,  discrete derivative of theta
+  state_seq_diff_alpha = simOut.logsout{2}; % outport of discrete derivative1, discrete derivative of alpha
   % TODO there is some mis mapping between different variables (state_seq_diff_alpha en state_seq_diff_theta)
   u_control_noSaturate = simOut.logsout{3}; % outport of gain1 (inport of the saturation block)
   state_seq_pos        = simOut.logsout{4}; % outport of quantizer block
