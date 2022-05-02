@@ -1,11 +1,13 @@
 clear;clc;close all;
-%% Parameters in the mechanical part
+%% ================================================ %%
+%% Parameters in the mechanical and electrical part %%
+%% ================================================ %%
+
 L = 0.305;     % (m) the length to the rod's center of mass
 m = 0.210;     % (kg) the mass of the rod
 r = 0.145;     % (m) the rotating arm length
 J_eq = 0.0044; % (kg*m^2) arm inertia
 g = 9.81;      % m/s^2, acceleration of gravity
-%% Parameters in the electrical part
 R_m = 2.6;     % (Ohm) the armature resistance
 K_m = 0.00767; % (V/(rad/s)) the back EMF constant
 K_t = 0.00767; % (Nm/A) the motor torque constant
@@ -14,7 +16,9 @@ K_g = 70;      % (70:1) the gearbox ratio, the output is slower
 eta_g = 0.9;   % the gearbox efficiency
 B_eq = 0.004;  % (Nm/(rad/s)) equivalent viscous damping coefficient
 
-%% tuning LQR parameters
+%% ========================================================== %%
+%% tuning LQR parameters, trials and corresponding parameters %%
+%% ========================================================== %%
 
 trial_LUT(1).index = 1;
 trial_LUT(1).name = 'default';
@@ -85,5 +89,12 @@ for i=1:length(trial_LUT)
   trial_display_str = strcat(trial_display_str, num2str(trial_LUT(i).index), '\t', trial_LUT(i).name, '\t', trial_LUT(i).description, '\n');
 end
 trial_display_str = strcat(trial_display_str, '============ trial name choices end ===========\n\n');
+
+%% ====================== %%
+%% Directories definition %%
+%% ====================== %%
+
+experiment_section_LUT = ["lin_ss_model/", "continuous_slosed_loop/", "realistic_closed_loop/"];
+plot_dir_main = './rip/plots/';
 
 fprintf("parameters registered.\n")

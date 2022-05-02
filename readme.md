@@ -7,8 +7,6 @@ Detailed introduction to
 
 ## Start Here: RIP
 
-To test the RIP part, run `runme;main_rip` *instead of running `main_rip` in the `./rip/` folder*.
+All tests start at the root directory. To test the RIP part, run `runme;main_rip` *instead of running `main_rip` in the `./rip/` folder*.
 
 ## Notes
-
-*For Gaetan: Comments starting with `TODO` are questions I am not quite sure or to be discussed.*

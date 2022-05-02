@@ -15,10 +15,10 @@ else
   fprintf('===============================================\n\n');
 end
 
-prompt = 'Do you want to check different results of LQR design? (y/n) [default:y]: ';
+prompt = 'Do you want to check different results of LQR design (continuous-time version)? (y/n) [default:n]: ';
 txt = input(prompt,"s");
 if isempty(txt)
-    txt = 'y';
+    txt = 'n';
 end
 
 if txt == 'y'
@@ -29,4 +29,9 @@ if txt == 'y'
   Q = trial_LUT(trial_index).Q;
   R = trial_LUT(trial_index).R;
   LQR_design;
+else
+  fprintf('\n===============================================\n');
+  fprintf('==== skipped LQR design (continuous-time). ====\n');
+  fprintf('===============================================\n\n');
 end
+

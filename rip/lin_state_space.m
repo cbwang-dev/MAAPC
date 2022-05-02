@@ -24,12 +24,13 @@ B=[0;
 %assignment that only alpha and theta are measured. 
 C=eye(2,4);   % we can only measure alpha and theta
 D=zeros(2,1); % we can only measure alpha and theta
-save('./rip/lin_ss_model.mat','A','B','C','D');
-fprintf("saved matrixes A, B, C, D of linear state-space model in ./rip/lin_ss_model.mat.\n");
 
 % simulate the state space model
 sys = ss(A,B,C,D);
 fprintf("linear state-space model created, in variable sys.\n")
+
+save('./rip/lin_ss_model.mat','A','B','C','D','sys');
+fprintf("saved matrixes A, B, C, D, and sys of linear state-space model in ./rip/lin_ss_model.mat.\n");
 
 %% analyze the state space model
 

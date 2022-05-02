@@ -10,7 +10,7 @@ sys_cl = ss(A_feedback,B_feedback, C, D);
 % Use of the biliniear rule: guaratneed stable pole mapping, Dwonside: loss
 % of physical meaning
 
-%trial_index  = 5;
+% trial_index  = 5;
 for trial_index = 1:7
     [K_control,~,~] = lqr(sys,trial_LUT(trial_index).Q,trial_LUT(trial_index).R);
     %Check of the poles
