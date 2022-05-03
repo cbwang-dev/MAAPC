@@ -14,7 +14,7 @@ fprintf('=========== starting trial: %s ===========\n', trial_LUT(trial_index).n
 %Reminder: system state structure = [theta,alpha,diff_theta,diff_alfa]
 x0 = [0,0,0,0]; %desired convergence state of the system
 xd = [30*pi/180,0,0,0]; %initial state of the system
-simOut = sim('continuous_time_sim');
+simOut = sim('continuous_time_sim_r2021b');
 fprintf('completed simulation, now analyzing...\n');
 %% Extracting logged signals from the simulation results
 state_seq = simOut.logsout{6};

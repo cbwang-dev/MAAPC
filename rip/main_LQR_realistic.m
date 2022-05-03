@@ -47,7 +47,7 @@ for i = 1:length(trial_LUT) % conduct independent experiments.
   Q = trial_LUT(trial_index).Q;
   R = trial_LUT(trial_index).R;
   [K_control,~,~] = lqr(sys, Q, R); % K_control is fed into the simulink diagram
-  simOut = sim('discrete_time_realistic_sim');
+  simOut = sim('discrete_time_realistic_sim_r2021b');
 
   % print out the necessary information
   fprintf("description: %s\n", trial_LUT(trial_index).description);

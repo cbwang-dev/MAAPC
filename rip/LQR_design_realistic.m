@@ -32,7 +32,7 @@ for trial_index = 1:7
     K = 1;
     Vsat = 5;
     Vquant = 20/(2^16);
-    simOut = sim('discrete_time_realistic_sim');
+    simOut = sim('discrete_time_realistic_sim_r2021b');
     % Simulink data anlysis
     state_seq_pos = simOut.logsout{4};
     state_seq_diff_theta = simOut.logsout{2};
