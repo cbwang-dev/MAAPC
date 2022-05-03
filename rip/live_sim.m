@@ -24,4 +24,4 @@ else
 end
 
 %% Saving simout
-save('sim1.mat','simout');
+save('sim1.mat','simout''Q','R','x0','xd','wc','K_control');
