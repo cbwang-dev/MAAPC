@@ -11,7 +11,7 @@ x0 = [0, 0, 0, 0]; xd = [0, 0, 0, 0];
 experiment_scenario = "setPointTracking"; % choices are "setPointTracking" or "disturbanceRejection"
 if experiment_scenario == "setPointTracking"
   % define when the setpoint is changed and the amplitude of the change
-  setpoint_change_timestamp = 2; % in seconds
+  setpoint_change_timestamp = 0.4; % in seconds
   in_delay = setpoint_change_timestamp * fs; % in number of samples.
   setpoint_theta= 90; % in degree, not in radian.
   x0 = x0; % initial state not changed in set point tracking, still zero * 4.
@@ -110,7 +110,7 @@ for i = 1:length(trial_LUT) % conduct independent experiments.
   Q = trial_LUT(trial_index).Q;
   R = trial_LUT(trial_index).R;
   [K_control,~,~] = lqr(sys, Q, R); % K_control is fed into the simulink diagram
-  simOut = sim('discrete_time_realistic_sim');
+  simOut = sim('discrete_time_realistic_sim_r2021b');
 
   %% ========================================= %%
   %% experiment results and generating figures %%
