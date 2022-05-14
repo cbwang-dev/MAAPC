@@ -1,4 +1,4 @@
-
+load('references_10.mat')
 
 m = 0.5;
 L = 0.25;
