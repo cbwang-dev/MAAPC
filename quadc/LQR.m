@@ -49,3 +49,6 @@ set_angle = [0;0;0];
 Tmax = 50;
 sim("quadcopter_LQR_sim.slx", Tmax);
 generate_report(0);
+
+% PAYLOAD:
+%Difficulty at checkpoint 4 , psi angle problem => lack of robustness
