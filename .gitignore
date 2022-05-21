@@ -30,7 +30,7 @@ Icon
 Network Trash Folder
 Temporary Items
 .apdisk
-*rip/test_data/
+#*rip/test_data/
 ### MATLAB ###
 # Windows default autosave extension
 *.asv

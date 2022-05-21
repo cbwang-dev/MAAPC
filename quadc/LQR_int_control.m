@@ -24,6 +24,7 @@ Q(4:6,4:6) = 15E0*Q(4:6,4:6);
 Q(6,6) = 8E3*Q(6,6);
 Q(13,13) = 2;
 Q(14,14) = 2;
+% Q(size(A_aug,2),size(A_aug,2)) = 1E2;
 Q(size(A_aug,2),size(A_aug,2)) = 1E2;
 R = eye(size(B_aug,2));
 
@@ -36,7 +37,7 @@ R = eye(size(B_aug,2));
 % the template. Therefore, we need to know why that gravity can be added in
 % thos elements of the A matrix...
 
-[~,K,~] = idare(A_aug,B_aug, Q,R,[],[]);
+[K,~,~] = dlqr(A_aug,B_aug, Q,R,[]);
 
 Ks = K(:,1:12);
 Ki = K(:,13:end);
