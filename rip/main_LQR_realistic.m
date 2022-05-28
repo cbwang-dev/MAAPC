@@ -25,8 +25,12 @@ else
 end
 
 % simulink diagram related parameters
-n  = 0.0005; % scaling of the white measurement noise into the system (assumption, and need to be estimated in the real experiment) and it iscombined with thepower of bandlimited noise  block in simulink diagram
-wc = 2*2*pi; % parameter required to calculate alpha and theta filter, given in the assignment.
+% scaling of the white measurement noise into the system (assumption, and need to be estimated in the real experiment) and it iscombined with thepower of bandlimited noise  block in simulink diagram
+Pnoisealpha = (4.4484e-04)^2;
+Pnoisetheta = (8.4453e-04)^2;
+alpha_offset = 0.6361;
+theta_offset = 0.2021;
+%wc = 2*2*pi; % parameter required to calculate alpha and theta filter, given in the assignment.
 K = 1; % parameter required to calculate alpha and theta filter, given in the assignment.
 Ts = 1 / fs;
 Vsat = 5; % saturation voltage, [Vsat, -Vsat]
@@ -39,6 +43,7 @@ Vquant = 20/(2^16); % quantizer interval, Chengbin has some questions to that. A
 %% ======================================== %%
 
 
+%length(trial_LUT)
 
 for i = 1:length(trial_LUT) % conduct independent experiments.
   fprintf("\nINFO: starting trial %d\n", i);
@@ -47,7 +52,7 @@ for i = 1:length(trial_LUT) % conduct independent experiments.
   Q = trial_LUT(trial_index).Q;
   R = trial_LUT(trial_index).R;
   [K_control,~,~] = lqr(sys, Q, R); % K_control is fed into the simulink diagram
-  simOut = sim('discrete_time_realistic_sim_r2021b');
+  simOut = sim('discrete_time_realistic_sim_r2022a');
 
   % print out the necessary information
   fprintf("description: %s\n", trial_LUT(trial_index).description);
@@ -69,28 +74,28 @@ for i = 1:length(trial_LUT) % conduct independent experiments.
 
   % Figures
   plot_dir = strcat(plot_dir_main, experiment_section_LUT(3), num2str(trial_index), '/');
-
-  fig_states = figure(); % four states changing over time
+  %
+  fig_states = figure('units','normalized','outerposition',[0 0 1 1]); % four states changing over time
   subplot(4,1,1);hold on;
   plot(state_seq_pos.Values.Time, state_seq_pos.Values.data(:,1));
   title('Simulink Output of $\theta$ (equal to the state)','Interpreter','latex')
-  axis([minx maxx down_y up_y]);xlabel('time [s]');ylabel('angle [rad]');
+  xlim([minx maxx]);xlabel('time [s]');ylabel('angle [rad]');
   subplot(4,1,2);hold on;
   plot(state_seq_pos.Values.Time, state_seq_pos.Values.data(:,2));
   title('Simulink Output of $\alpha$ (equal to the state)','Interpreter','latex')
-  axis([minx maxx down_y up_y]);xlabel('time [s]');ylabel('angle [rad]');
+  xlim([minx maxx]);xlabel('time [s]');ylabel('angle [rad]');
   subplot(4,1,3);hold on;
   plot(state_seq_diff_theta.Values.Time, state_seq_diff_theta.Values.data)
   title('Simulink Output of $\dot{\theta}$ (equal to the state)','Interpreter','latex')
-  axis([minx maxx down_y up_y]);xlabel('time [s]');ylabel('angular velocity [rad/s]');
+  xlim([minx maxx]);xlabel('time [s]');ylabel('angular velocity [rad/s]');
   subplot(4,1,4);hold on;
   plot(state_seq_diff_alpha.Values.Time, state_seq_diff_alpha.Values.data)
   title('Simulink Output of $\dot{\alpha}$ (equal to the state)','Interpreter','latex')
-  axis([minx maxx down_y up_y]);xlabel('time [s]');ylabel('angular velocity [rad/s]');
+  xlim([minx maxx]);xlabel('time [s]');ylabel('angular velocity [rad/s]');
   saveas(fig_states, strcat(plot_dir,'fig_1_4_states.fig'));
   saveas(fig_states, strcat(plot_dir,'fig_1_4_states.png'));
 
-  fig_ctrl = figure(); % control signal, before and after saturation
+  fig_ctrl = figure('units','normalized','outerposition',[0 0 1 1]); % control signal, before and after saturation
   plot(u_control.Values.Time, u_control_noSaturate.Values.data);hold on;
   plot(u_control.Values.Time, u_control.Values.data);
   title('Simulink Output of Control signal $u = -K*(x-x_d)$','Interpreter','latex');
@@ -103,14 +108,21 @@ for i = 1:length(trial_LUT) % conduct independent experiments.
 end
 
 fprintf("INFO: combine all plots into one separate plot\n");
-ax_all = string(zeros(1,length(trial_LUT))); 
-for i = 1:length(trial_LUT) % conduct independent experiments.
-  trial_index = i;
-  ax_all(i) = strcat("trial ",num2str(i));
+
+used_idx = [9,12,13,14];
+ax_all = string(zeros(1,length(used_idx))); 
+for i = 1:length(used_idx) % conduct independent experiments.
+  trial_index = used_idx(i);
+  if trial_index == 9
+      ax_all(i) = strcat("Default omega_n");
+  else
+      ax_all(i) = strcat("omega_n ",num2str(i-1));
+  end
   Q = trial_LUT(trial_index).Q;
   R = trial_LUT(trial_index).R;
+  wc = trial_LUT(trial_index).wc;
   [K_control,~,~] = lqr(sys, Q, R); % K_control is fed into the simulink diagram
-  simOut = sim('discrete_time_realistic_sim_r2021b');
+  simOut = sim('discrete_time_realistic_sim_r2022a');
 
   %% ========================================= %%
   %% experiment results and generating figures %%
@@ -127,25 +139,29 @@ for i = 1:length(trial_LUT) % conduct independent experiments.
   up_y = pi; down_y = -pi; minx = 0; maxx = 5; % axis definition
 
   % Figures
-  figure(1); % four states changing over time
+  f1 =  figure(1); % four states changing over time
+  f1.Units = 'normalized';
+  f1.OuterPosition = [0 0 1 1];
   subplot(4,1,1);hold on;
   plot(state_seq_pos.Values.Time, state_seq_pos.Values.data(:,1));
   title('Simulink Output of $\theta$ (equal to the state)','Interpreter','latex')
-  axis([minx maxx down_y up_y]);xlabel('time [s]');ylabel('angle [rad]');ax1=gca;
+  axis([minx maxx -1 3]);xlabel('time [s]');ylabel('angle [rad]');ax1=gca;
   subplot(4,1,2);hold on;
   plot(state_seq_pos.Values.Time, state_seq_pos.Values.data(:,2));
   title('Simulink Output of $\alpha$ (equal to the state)','Interpreter','latex')
-  axis([minx maxx down_y up_y]);xlabel('time [s]');ylabel('angle [rad]');ax2=gca;
+  axis([minx maxx -0.3 0.2]);xlabel('time [s]');ylabel('angle [rad]');ax2=gca;
   subplot(4,1,3);hold on;
   plot(state_seq_diff_theta.Values.Time, state_seq_diff_theta.Values.data)
   title('Simulink Output of $\dot{\theta}$ (equal to the state)','Interpreter','latex')
-  axis([minx maxx down_y up_y]);xlabel('time [s]');ylabel('angular velocity [rad/s]');ax3=gca;
+  axis([minx maxx -5 7]);xlabel('time [s]');ylabel('angular velocity [rad/s]');ax3=gca;
   subplot(4,1,4);hold on;
   plot(state_seq_diff_alpha.Values.Time, state_seq_diff_alpha.Values.data)
   title('Simulink Output of $\dot{\alpha}$ (equal to the state)','Interpreter','latex')
-  axis([minx maxx down_y up_y]);xlabel('time [s]');ylabel('angular velocity [rad/s]');ax4=gca;
+  axis([minx maxx -2 1.5]);xlabel('time [s]');ylabel('angular velocity [rad/s]');ax4=gca;
 
-  figure(2); % control signal, before and after saturation
+  f2 = figure(2); % control signal, before and after saturation
+  f2.Units = 'normalized';
+  f2.OuterPosition = [0 0 1 1];
   subplot(2,1,1);hold on;
   plot(u_control.Values.Time, u_control_noSaturate.Values.data);
   title('Simulink Output of Control signal $u = -K*(x-x_d)$ (before saturation block)','Interpreter','latex')

@@ -9,7 +9,10 @@ sys_cl = ss(A_feedback,B_feedback, C, D);
 % Discretization of the closed loop sytstem
 % Use of the biliniear rule: guaratneed stable pole mapping, Dwonside: loss
 % of physical meaning
-
+Pnoisealpha = (4.4484e-04)^2;
+Pnoisetheta = (8.4453e-04)^2;
+alpha_offset = 0.6361;
+theta_offset = 0.2021;
 % trial_index  = 5;
 for trial_index = 1:7
     [K_control,~,~] = lqr(sys,trial_LUT(trial_index).Q,trial_LUT(trial_index).R);
@@ -27,12 +30,14 @@ for trial_index = 1:7
     xd = [90*pi/180,0,0,0]; %desired convergence state of the system
     n  = 0.0005; %scaling of the white measurement noise into the system (assumption)
     in_delay = 50;
-    wc = 2*2*pi;
+    %wc = 2*2*pi;
     Ts = 1/200; %As the sampling frequency is 200Hz
     K = 1;
     Vsat = 5;
     Vquant = 20/(2^16);
-    simOut = sim('discrete_time_realistic_sim_r2021b');
+    minx = 0;
+    maxx = 5;
+    simOut = sim('discrete_time_realistic_sim_r2022a');
     % Simulink data anlysis
     state_seq_pos = simOut.logsout{4};
     state_seq_diff_theta = simOut.logsout{2};
@@ -40,8 +45,7 @@ for trial_index = 1:7
     u_control = simOut.logsout{5};
     up_y = pi;
     down_y = -pi;
-    minx = 0;
-    maxx = 5;
+    
     
     %figure('units','normalized','outerposition',[0 0 1 1]);
     figure(1)

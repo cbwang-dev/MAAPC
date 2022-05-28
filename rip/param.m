@@ -129,36 +129,36 @@ trial_LUT(11).Q = [10 0  0 0;
                   0 0  0 5];
 trial_LUT(11).R = 1.5;
 trial_LUT(11).wc = 2*2*pi; % parameter required to calculate alpha and theta filter, given in the assignment.
-% trial_LUT(11).index = 11;
-% trial_LUT(11).name = 'trial_11';
-% trial_LUT(11).description = '8x Q elements w.r.t default scenario. Increase state weighting.';
-% trial_LUT(11).Q = [100 0  0 0;
-%                   0 160 0 0;
-%                   0 0  0 0;
-%                   0 0  0 0];
-% trial_LUT(11).R = 1.5;
-% trial_LUT(11).wc = 3*2*pi; % parameter required to calculate alpha and theta filter, given in the assignment.
-% 
-% trial_LUT(12).index = 12;
-% trial_LUT(12).name = 'trial_11';
-% trial_LUT(12).description = '8x Q elements w.r.t default scenario. Increase state weighting.';
-% trial_LUT(12).Q = [100 0  0 0;
-%                   0 160 0 0;
-%                   0 0  0 0;
-%                   0 0  0 0];
-% trial_LUT(12).R = 1.5;
-% trial_LUT(12).wc = 1*2*pi; % parameter required to calculate alpha and theta filter, given in the assignment.
-% 
-% 
-% trial_LUT(13).index = 13;
-% trial_LUT(13).name = 'trial_11';
-% trial_LUT(13).description = '8x Q elements w.r.t default scenario. Increase state weighting.';
-% trial_LUT(13).Q = [100 0  0 0;
-%                   0 160 0 0;
-%                   0 0  0 0;
-%                   0 0  0 0];
-% trial_LUT(13).R = 1.5;
-% trial_LUT(13).wc = 0.2*2*pi; % parameter required to calculate alpha and theta filter, given in the assignment.
+trial_LUT(12).index = 12;
+trial_LUT(12).name = 'trial_11';
+trial_LUT(12).description = '8x Q elements w.r.t default scenario. Increase state weighting.';
+trial_LUT(12).Q = [100 0  0 0;
+                  0 160 0 0;
+                  0 0  0 0;
+                  0 0  0 0];
+trial_LUT(12).R = 1.5;
+trial_LUT(12).wc = 3*2*pi; % parameter required to calculate alpha and theta filter, given in the assignment.
+
+trial_LUT(13).index = 13;
+trial_LUT(13).name = 'trial_11';
+trial_LUT(13).description = '8x Q elements w.r.t default scenario. Increase state weighting.';
+trial_LUT(13).Q = [100 0  0 0;
+                  0 160 0 0;
+                  0 0  0 0;
+                  0 0  0 0];
+trial_LUT(13).R = 1.5;
+trial_LUT(13).wc = 1*2*pi; % parameter required to calculate alpha and theta filter, given in the assignment.
+
+
+trial_LUT(14).index = 14;
+trial_LUT(14).name = 'trial_11';
+trial_LUT(14).description = '8x Q elements w.r.t default scenario. Increase state weighting.';
+trial_LUT(14).Q = [100 0  0 0;
+                  0 160 0 0;
+                  0 0  0 0;
+                  0 0  0 0];
+trial_LUT(14).R = 1.5;
+trial_LUT(14).wc = 0.2*2*pi; % parameter required to calculate alpha and theta filter, given in the assignment.
 
 
 trial_display_str = '========= trial name choices start ============\n';
