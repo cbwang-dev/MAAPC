@@ -114,9 +114,9 @@ ax_all = string(zeros(1,length(used_idx)));
 for i = 1:length(used_idx) % conduct independent experiments.
   trial_index = used_idx(i);
   if trial_index == 9
-      ax_all(i) = strcat("Default omega_n");
+      ax_all(i) = strcat("Default $\omega$");
   else
-      ax_all(i) = strcat("omega_n ",num2str(i-1));
+      ax_all(i) = strcat("$\omega_{",num2str(i-1),"}$");
   end
   Q = trial_LUT(trial_index).Q;
   R = trial_LUT(trial_index).R;
@@ -171,8 +171,8 @@ for i = 1:length(used_idx) % conduct independent experiments.
   title('Simulink Output of Control signal $u = -K*(x-x_d)$ (after saturation block)','Interpreter','latex')
   xlabel('time [s]');ylabel('Voltage [V]');ax6=gca;
 end
-legend(ax1,ax_all);legend(ax2,ax_all);legend(ax3,ax_all);legend(ax4,ax_all);
-legend(ax5,ax_all);legend(ax6,ax_all);
+legend(ax1,ax_all,'Interpreter','latex');legend(ax2,ax_all,'Interpreter','latex');legend(ax3,ax_all,'Interpreter','latex');legend(ax4,ax_all,'Interpreter','latex');
+legend(ax5,ax_all,'Interpreter','latex');legend(ax6,ax_all,'Interpreter','latex');
 plot_dir = strcat(plot_dir_main, experiment_section_LUT(3), 'all', '/');
 if ~exist(plot_dir, 'dir')
   mkdir(plot_dir);
