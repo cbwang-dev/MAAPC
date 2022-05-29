@@ -329,7 +329,7 @@ set_pos1 = 57.13;
 set_pos2 = 100;
 set_pos3 = 120;
 set_pos = [set_pos1,set_pos2,set_pos3];
-up_y = 0.5; down_y = -1; minx =0; maxx = 200; % axis definition
+up_y = 0.5; down_y = -1; minx =50; maxx = 80; % axis definition
 fig_ctrl = figure('units','normalized','outerposition',[0 0 1 1]);
 hold on
 plot(meas_ctrl.time,meas_ctrl.signals.values)
