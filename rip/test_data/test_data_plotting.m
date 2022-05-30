@@ -783,7 +783,7 @@ xlim([minx maxx]);
 title(strcat(QR,', 45° set point, Real-time Output of Control signal u = -K*(x-x_d)'),'FontSize',25);
 legend('$u_{control}$','Interpreter','latex');
 xlabel('time [s]');ylabel('Voltage [V]');
-saveas(fig_ctrl, strcat(plot_dir,QR,'_setpoint_control_30deg.png'));
+saveas(fig_ctrl, strcat(plot_dir,QR,'_setpoint_control_45deg.png'));
 fig_states = figure('units','normalized','outerposition',[0 0 1 1]);
 subplot(4,1,1);hold on;
 plot(meas_states.time, meas_states.signals.values(:,1));
@@ -806,7 +806,7 @@ plot(meas_states.time, meas_states.signals.values(:,4))
 title('Real-time Output of $\dot{\alpha}$ (equal to the state)','Interpreter','latex','FontSize',15)
 xlim([minx maxx]);xlabel('time [s]');ylabel('angular velocity [rad/s]');
 sgtitle(strcat(QR,', 45° set point, Real-time Output of the estimated state'),'FontSize',25);
-saveas(fig_states, strcat(plot_dir,QR,'_setpoint_states_30deg.png'));
+saveas(fig_states, strcat(plot_dir,QR,'_setpoint_states_45deg.png'));
 %% Plotting omega 1 setpoint
 close all;
 load('sim_11_ALL.mat')
