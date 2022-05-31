@@ -14,7 +14,7 @@ xlim([minx maxx]);
 title(strcat(QR,', 15° set point, Real-time Output of Control signal u = -K*(x-x_d)'),'FontSize',25);
 legend('$u_{control}$','Interpreter','latex');
 xlabel('time [s]');ylabel('Voltage [V]');
-saveas(fig_ctrl, strcat(plot_dir,'QR2_setpoint_control.png'));
+saveas(fig_ctrl, strcat(plot_dir,'Default_setpoint_control.png'));
 fig_states = figure('units','normalized','outerposition',[0 0 1 1]);
 subplot(4,1,1);hold on;
 plot(meas_states.time, meas_states.signals.values(:,1));
@@ -37,7 +37,7 @@ plot(meas_states.time, meas_states.signals.values(:,4))
 title('Real-time Output of $\dot{\alpha}$ (equal to the state)','Interpreter','latex','FontSize',15)
 xlim([minx maxx]);xlabel('time [s]');ylabel('angular velocity [rad/s]');
 sgtitle(strcat(QR,', 15° set point, Real-time Output of the estimated state'),'FontSize',25);
-saveas(fig_states, strcat(plot_dir,'QR2_setpoint_states.png'));
+saveas(fig_states, strcat(plot_dir,'Default_setpoint_states.png'));
 %% Default Disturbance
 close all;
 load('sim_1_ALL_5_30.mat')
@@ -53,7 +53,7 @@ xlim([minx maxx]);
 title(strcat(QR,', Disturbance rejection, Real-time Output of Control signal u = -K*(x-x_d)'),'FontSize',25);
 legend('$u_{control}$','Interpreter','latex');
 xlabel('time [s]');ylabel('Voltage [V]');
-saveas(fig_ctrl, strcat(plot_dir,'QR2_disturbance_control.png'));
+saveas(fig_ctrl, strcat(plot_dir,'Default_disturbance_control.png'));
 fig_states = figure('units','normalized','outerposition',[0 0 1 1]);
 subplot(4,1,1);hold on;
 plot(meas_states.time, meas_states.signals.values(:,1));
@@ -76,7 +76,7 @@ plot(meas_states.time, meas_states.signals.values(:,4))
 title('Real-time Output of $\dot{\alpha}$ (equal to the state)','Interpreter','latex','FontSize',15)
 xlim([minx maxx]);xlabel('time [s]');ylabel('angular velocity [rad/s]');
 sgtitle(strcat(QR,', Disturbance rejection, Real-time Output of the estimated state'),'FontSize',25);
-saveas(fig_states, strcat(plot_dir,'QR2_disturbance_states.png'));
+saveas(fig_states, strcat(plot_dir,'Default_disturbance_states.png'));
 %% Plotting QR1 setpoint
 close all;
 load('sim_2_ALL_5_30.mat')
@@ -92,7 +92,7 @@ xlim([minx maxx]);
 title(strcat(QR,', 15° set point, Real-time Output of Control signal u = -K*(x-x_d)'),'FontSize',25);
 legend('$u_{control}$','Interpreter','latex');
 xlabel('time [s]');ylabel('Voltage [V]');
-saveas(fig_ctrl, strcat(plot_dir,'QR2_setpoint_control.png'));
+saveas(fig_ctrl, strcat(plot_dir,'QR1_setpoint_control.png'));
 fig_states = figure('units','normalized','outerposition',[0 0 1 1]);
 subplot(4,1,1);hold on;
 plot(meas_states.time, meas_states.signals.values(:,1));
@@ -115,7 +115,7 @@ plot(meas_states.time, meas_states.signals.values(:,4))
 title('Real-time Output of $\dot{\alpha}$ (equal to the state)','Interpreter','latex','FontSize',15)
 xlim([minx maxx]);xlabel('time [s]');ylabel('angular velocity [rad/s]');
 sgtitle(strcat(QR,', 15° set point, Real-time Output of the estimated state'),'FontSize',25);
-saveas(fig_states, strcat(plot_dir,'QR2_setpoint_states.png'));
+saveas(fig_states, strcat(plot_dir,'QR1_setpoint_states.png'));
 %% Plotting QR1 Disturbance
 close all;
 load('sim_2_ALL_5_30.mat')
@@ -131,7 +131,7 @@ xlim([minx maxx]);
 title(strcat(QR,', Disturbance rejection, Real-time Output of Control signal u = -K*(x-x_d)'),'FontSize',25);
 legend('$u_{control}$','Interpreter','latex');
 xlabel('time [s]');ylabel('Voltage [V]');
-saveas(fig_ctrl, strcat(plot_dir,'QR2_disturbance_control.png'));
+saveas(fig_ctrl, strcat(plot_dir,'QR1_disturbance_control.png'));
 fig_states = figure('units','normalized','outerposition',[0 0 1 1]);
 subplot(4,1,1);hold on;
 plot(meas_states.time, meas_states.signals.values(:,1));
@@ -154,7 +154,7 @@ plot(meas_states.time, meas_states.signals.values(:,4))
 title('Real-time Output of $\dot{\alpha}$ (equal to the state)','Interpreter','latex','FontSize',15)
 xlim([minx maxx]);xlabel('time [s]');ylabel('angular velocity [rad/s]');
 sgtitle(strcat(QR,', Disturbance rejection, Real-time Output of the estimated state'),'FontSize',25);
-saveas(fig_states, strcat(plot_dir,'QR2_disturbance_states.png'));
+saveas(fig_states, strcat(plot_dir,'QR1_disturbance_states.png'));
 %% Plotting QR2 setpoint
 close all;
 load('sim_3_setpoint.mat')
