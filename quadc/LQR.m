@@ -14,9 +14,9 @@ Q = eye(size(C_d,2));
 %made more agressive. The corresponding state elements are 3 and 6
 
 %Test2:
-% Q(1:3,1:3) = 1E1*Q(1:3,1:3);
+% Q(1:2,1:2) = 1E1*Q(1:2,1:2);
 % Q(3,3) = 8E6*Q(3,3);
-% Q(4:6,4:6) = 1E1*Q(4:6,4:6);
+% Q(4:5,4:5) = 1E1*Q(4:5,4:5);
 % Q(6,6) = 8E6*Q(6,6);
 
 %The tremendously increased z position and z-velocity state Q-weights indeed show a much more
@@ -31,9 +31,9 @@ Q = eye(size(C_d,2));
 % control action insufficient => integral action necessary.
 
 %Test3:
-Q(1:3,1:3) = 3E1*Q(1:3,1:3);
+Q(1:2,1:2) = 3E1*Q(1:2,1:2);
 Q(3,3) = 8E6*Q(3,3);
-Q(4:6,4:6) = 1E1*Q(4:6,4:6);
+Q(4:5,4:5) = 1E1*Q(4:5,4:5);
 Q(6,6) = 8E6*Q(6,6);
 
 %Increasing the 3,3 and 6,6 weights will eventually make the controller

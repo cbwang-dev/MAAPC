@@ -6,7 +6,9 @@ sz_B = size(B_d);
 A_aug = [A_d,zeros(sz_A(1),3);
          eye(3),zeros(3,sz_A(1)-3),eye(3)];
 B_aug = [B_d;zeros(3,sz_B(2))];
-
+% A_aug = [A_d,zeros(sz_A(1),6);
+%          eye(6),zeros(6,sz_A(1)-6),eye(6)];
+% B_aug = [B_d;zeros(6,sz_B(2))];
 % Checking the rank of relevant matrices
 fprintf('Rank of the controllability matrix = %i',rank(ctrb(A_aug,B_aug)))
 %TODO: Controllability problem??
@@ -18,14 +20,15 @@ fprintf('Rank of the controllability matrix = %i',rank(ctrb(A_aug,B_aug)))
 
 
 Q = eye(size(A_aug,2));
-Q(1:3,1:3) = 20E0*Q(1:3,1:3);
+Q(1:2,1:2) = 30E0*Q(1:2,1:2);
 Q(3,3) = 8E3*Q(3,3);
-Q(4:6,4:6) = 15E0*Q(4:6,4:6);
+Q(4:5,4:5) = 10E0*Q(4:5,4:5);
 Q(6,6) = 8E3*Q(6,6);
-Q(13,13) = 2;
-Q(14,14) = 2;
-% Q(size(A_aug,2),size(A_aug,2)) = 1E2;
-Q(size(A_aug,2),size(A_aug,2)) = 1E2;
+Q(13,13) = 1;
+Q(14,14) = 1;
+Q(size(A_aug,2),size(A_aug,2)) = 1E3;
+% Q(15,15) = 1E2;
+% Q(16:18,16:18) = 2;
 R = eye(size(B_aug,2));
 
 % TODO: The solving of the Ricatti equation renders no solution when the
@@ -43,6 +46,7 @@ Ks = K(:,1:12);
 Ki = K(:,13:end);
 Vmax = 100;
 Tmax = 50;
+set_angle = [0;0;0];
 sim( "quadcopter_int_LQR_sim.slx",Tmax)
 generate_report(0);
 
