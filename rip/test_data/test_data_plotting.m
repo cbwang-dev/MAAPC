@@ -809,14 +809,14 @@ sgtitle(strcat(QR,', 45° set point, Real-time Output of the estimated state'),'
 saveas(fig_states, strcat(plot_dir,QR,'_setpoint_states_45deg.png'));
 %% Plotting omega 1 setpoint
 close all;
-load('sim_11_ALL.mat')
+load('trialLUT12_omegac_32pi_shaky.mat')
 QR = 'QR8';
 label = {'x_d','x_0','x_d'};
-set_pos1 = 2.175;
-set_pos2 = 12.78;
+set_pos1 = 28.015;
+set_pos2 = 100;
 set_pos3 = 150;
 set_pos = [set_pos1,set_pos2,set_pos3];
-up_y = 0.5; down_y = -1; minx =0; maxx = 20; % axis definition
+up_y = 0.5; down_y = -1; minx =20; maxx = 50; % axis definition
 fig_ctrl = figure('units','normalized','outerposition',[0 0 1 1]);
 hold on
 plot(meas_ctrl.time,meas_ctrl.signals.values)
@@ -851,14 +851,19 @@ sgtitle(strcat(QR,', 15degree set point, $\omega_{1}$, Real-time Output of the e
 saveas(fig_states, strcat(plot_dir,QR,'_setpoint_states_omega1.png'));
 %% Plotting omega 1 disturbance
 close all;
-load('sim_11_ALL.mat')
+load('trialLUT12_omegac_32pi_shaky.mat')
 QR = 'QR8';
-label = {'Dist','Dist','Dist'};
-set_pos1 = 30.245;
-set_pos2 = 33.285;
-set_pos3 = 35.475;
-set_pos = [set_pos1,set_pos2,set_pos3];
-up_y = 0.5; down_y = -1; minx =20; maxx = 40; % axis definition
+label = {'Dist','Dist','Dist','Dist','Dist','Dist','Dist','Dist'};
+set_pos1 = 78.58;
+set_pos2 = 81.31;
+set_pos3 = 83.95;
+set_pos4 = 86.755;
+set_pos5 = 88.315;
+set_pos6 = 89.64;
+set_pos7 = 91.375;
+set_pos8 = 94.44;
+set_pos = [set_pos1,set_pos2,set_pos3, set_pos4,set_pos5,set_pos6,set_pos7,set_pos8];
+up_y = 0.5; down_y = -1; minx =70; maxx = 100; % axis definition
 fig_ctrl = figure('units','normalized','outerposition',[0 0 1 1]);
 hold on
 plot(meas_ctrl.time,meas_ctrl.signals.values)
@@ -893,14 +898,14 @@ sgtitle(strcat(QR,', Disturbance rejection, $\omega_{1}$, Real-time Output of th
 saveas(fig_states, strcat(plot_dir,QR,'_disturbance_states_omega1.png'));
 %% Plotting omega 2 setpoint
 close all;
-load('sim_12_ALL.mat')
+load('trialLUT13_omegac_12pi.mat')
 QR = 'QR8';
 label = {'x_d','x_0','x_d'};
-set_pos1 = 12.86;
-set_pos2 = 2;
+set_pos1 = 29.1;
+set_pos2 = 100;
 set_pos3 = 150;
 set_pos = [set_pos1,set_pos2,set_pos3];
-up_y = 0.5; down_y = -1; minx =5; maxx = 25; % axis definition
+up_y = 0.5; down_y = -1; minx =20; maxx = 50; % axis definition
 fig_ctrl = figure('units','normalized','outerposition',[0 0 1 1]);
 hold on
 plot(meas_ctrl.time,meas_ctrl.signals.values)
@@ -935,14 +940,17 @@ sgtitle(strcat(QR,', 15degree set point, $\omega_{2}$, Real-time Output of the e
 saveas(fig_states, strcat(plot_dir,QR,'_setpoint_states_omega2.png'));
 %% Plotting omega 2 disturbance
 close all;
-load('sim_12_ALL.mat')
+load('trialLUT13_omegac_12pi.mat')
 QR = 'QR8';
-label = {'Dist','Dist','Dist'};
-set_pos1 = 30.55;
-set_pos2 = 42.8;
-set_pos3 = 60;
-set_pos = [set_pos1,set_pos2,set_pos3];
-up_y = 0.5; down_y = -1; minx =25; maxx = 50; % axis definition
+label = {'Dist','Dist','Dist','Dist','Dist','Dist'};
+set_pos1 = 77.185;
+set_pos2 = 79.9;
+set_pos3 = 82.53;
+set_pos4 = 85.51;
+set_pos5 = 88.63;
+set_pos6 = 91.86;
+set_pos = [set_pos1,set_pos2,set_pos3,set_pos4,set_pos5,set_pos6];
+up_y = 0.5; down_y = -1; minx =70; maxx = 100; % axis definition
 fig_ctrl = figure('units','normalized','outerposition',[0 0 1 1]);
 hold on
 plot(meas_ctrl.time,meas_ctrl.signals.values)
@@ -977,23 +985,149 @@ sgtitle(strcat(QR,', Disturbance rejection, $\omega_{2}$, Real-time Output of th
 saveas(fig_states, strcat(plot_dir,QR,'_disturbance_states_omega2.png'));
 %% Plotting omega 3 setpoint
 close all;
-load('sim_13_ALL.mat')
+load('trialLUT14_omegac_022pi.mat')
 QR = 'QR8';
+% label = {'x_d','x_0','x_d'};
+% set_pos1 = 34.66;
+% set_pos2 = 2;
+% set_pos3 = 150;
+% set_pos = [set_pos1,set_pos2,set_pos3];
+up_y = 0.5; down_y = -1; minx =0; maxx = 30; % axis definition
+fig_ctrl = figure('units','normalized','outerposition',[0 0 1 1]);
+hold on
+plot(meas_ctrl.time,meas_ctrl.signals.values)
+% xline(set_pos,'-',label)
+xlim([minx maxx]);
+title(strcat(QR,', unstable, $\omega_{3}$, Real-time Output of Control signal $u = -K*(x-x_d)$'),'Interpreter','latex','FontSize',25);
+legend('$u_{control}$','Interpreter','latex');
+xlabel('time [s]');ylabel('Voltage [V]');
+saveas(fig_ctrl, strcat(plot_dir,QR,'_unstable_omega3.png'));
+fig_states = figure('units','normalized','outerposition',[0 0 1 1]);
+subplot(4,1,1);hold on;
+plot(meas_states.time, meas_states.signals.values(:,1));
+% xline(set_pos,'-',label);
+title('Real-time Output of $\theta$ (equal to the state)','Interpreter','latex','FontSize',15)
+xlim([minx maxx]);xlabel('time [s]');ylabel('angle [rad]');
+subplot(4,1,2);hold on;
+% xline(set_pos,'-',label);
+plot(meas_states.time, meas_states.signals.values(:,2));
+title('Real-time Output of $\alpha$ (equal to the state)','Interpreter','latex','FontSize',15)
+xlim([minx maxx]);xlabel('time [s]');ylabel('angle [rad]');
+subplot(4,1,3);hold on;
+% xline(set_pos,'-',label);
+plot(meas_states.time, meas_states.signals.values(:,3))
+title('Real-time Output of $\dot{\theta}$ (equal to the state)','Interpreter','latex','FontSize',15)
+xlim([minx maxx]);xlabel('time [s]');ylabel('angular velocity [rad/s]');
+subplot(4,1,4);hold on;
+% xline(set_pos,'-',label);
+plot(meas_states.time, meas_states.signals.values(:,4))
+title('Real-time Output of $\dot{\alpha}$ (equal to the state)','Interpreter','latex','FontSize',15)
+xlim([minx maxx]);xlabel('time [s]');ylabel('angular velocity [rad/s]');
+sgtitle(strcat(QR,', unstable, $\omega_{3}$, Real-time Output of the estimated state'),'Interpreter','latex','FontSize',25);
+saveas(fig_states, strcat(plot_dir,QR,'_unstable_omega3.png'));
+%% Plotting omega 3 disturbance
+% close all;
+% load('trialLUT13_omegac_022pi.mat')
+% QR = 'QR8';
+% label = {'Dist','Dist','Dist'};
+% set_pos1 = 61.745;
+% set_pos2 = 65.4;
+% set_pos3 = 80;
+% set_pos = [set_pos1,set_pos2,set_pos3];
+% up_y = 0.5; down_y = -1; minx =58; maxx = 67; % axis definition
+% fig_ctrl = figure('units','normalized','outerposition',[0 0 1 1]);
+% hold on
+% plot(meas_ctrl.time,meas_ctrl.signals.values)
+% xline(set_pos,'-',label)
+% xlim([minx maxx]);
+% title(strcat(QR,' Disturbance rejection $\omega_{3}$ Real-time Output of Control signal $u = -K*(x-x_d$)'),'Interpreter','latex','FontSize',25);
+% legend('$u_{control}$','Interpreter','latex');
+% xlabel('time [s]');ylabel('Voltage [V]');
+% saveas(fig_ctrl, strcat(plot_dir,QR,'_disturbance_control_omega3.png'));
+% fig_states = figure('units','normalized','outerposition',[0 0 1 1]);
+% subplot(4,1,1);hold on;
+% plot(meas_states.time, meas_states.signals.values(:,1));
+% xline(set_pos,'-',label);
+% title('Real-time Output of $\theta$ (equal to the state)','Interpreter','latex','FontSize',15)
+% xlim([minx maxx]);xlabel('time [s]');ylabel('angle [rad]');
+% subplot(4,1,2);hold on;
+% xline(set_pos,'-',label);
+% plot(meas_states.time, meas_states.signals.values(:,2));
+% title('Real-time Output of $\alpha$ (equal to the state)','Interpreter','latex','FontSize',15)
+% xlim([minx maxx]);xlabel('time [s]');ylabel('angle [rad]');
+% subplot(4,1,3);hold on;
+% xline(set_pos,'-',label);
+% plot(meas_states.time, meas_states.signals.values(:,3))
+% title('Real-time Output of $\dot{\theta}$ (equal to the state)','Interpreter','latex','FontSize',15)
+% xlim([minx maxx]);xlabel('time [s]');ylabel('angular velocity [rad/s]');
+% subplot(4,1,4);hold on;
+% xline(set_pos,'-',label);
+% plot(meas_states.time, meas_states.signals.values(:,4))
+% title('Real-time Output of $\dot{\alpha}$ (equal to the state)','Interpreter','latex','FontSize',15)
+% xlim([minx maxx]);xlabel('time [s]');ylabel('angular velocity [rad/s]');
+% sgtitle(strcat(QR,' Disturbance rejection $\omega_{3}$ Real-time Output of the estimated state'),'Interpreter','latex','FontSize',25);
+% saveas(fig_states, strcat(plot_dir,QR,'_disturbance_states_omega3.png'));
+%% Plotting QR10 disturbance 15
+close all;
+load('sim_11_ALL_new_5_30.mat')
+QR = 'QR10';
+label = {'Dist','Dist','Dist'};
+set_pos1 = 64.625;
+set_pos2 = 71.8;
+set_pos3 = 76.97;
+set_pos = [set_pos1,set_pos2,set_pos3];
+up_y = 0.5; down_y = -1; minx =60; maxx = 90; % axis definition
+fig_ctrl = figure('units','normalized','outerposition',[0 0 1 1]);
+hold on
+plot(meas_ctrl.time,meas_ctrl.signals.values)
+xline(set_pos,'-',label)
+xlim([minx maxx]);
+title(strcat(QR,', Disturbance rejection, Real-time Output of Control signal u = -K*(x-x_d)'),'FontSize',25);
+legend('$u_{control}$','Interpreter','latex');
+xlabel('time [s]');ylabel('Voltage [V]');
+saveas(fig_ctrl, strcat(plot_dir,QR,'_disturbance_control.png'));
+fig_states = figure('units','normalized','outerposition',[0 0 1 1]);
+subplot(4,1,1);hold on;
+plot(meas_states.time, meas_states.signals.values(:,1));
+xline(set_pos,'-',label);
+title('Real-time Output of $\theta$ (equal to the state)','Interpreter','latex','FontSize',15)
+xlim([minx maxx]);xlabel('time [s]');ylabel('angle [rad]');
+subplot(4,1,2);hold on;
+xline(set_pos,'-',label);
+plot(meas_states.time, meas_states.signals.values(:,2));
+title('Real-time Output of $\alpha$ (equal to the state)','Interpreter','latex','FontSize',15)
+xlim([minx maxx]);xlabel('time [s]');ylabel('angle [rad]');
+subplot(4,1,3);hold on;
+xline(set_pos,'-',label);
+plot(meas_states.time, meas_states.signals.values(:,3))
+title('Real-time Output of $\dot{\theta}$ (equal to the state)','Interpreter','latex','FontSize',15)
+xlim([minx maxx]);xlabel('time [s]');ylabel('angular velocity [rad/s]');
+subplot(4,1,4);hold on;
+xline(set_pos,'-',label);
+plot(meas_states.time, meas_states.signals.values(:,4))
+title('Real-time Output of $\dot{\alpha}$ (equal to the state)','Interpreter','latex','FontSize',15)
+xlim([minx maxx]);xlabel('time [s]');ylabel('angular velocity [rad/s]');
+sgtitle(strcat(QR,', Disturbance rejection, Real-time Output of the estimated state'),'FontSize',25);
+saveas(fig_states, strcat(plot_dir,QR,'_disturbance_states.png'));
+%% Plotting QR10 setpoint 15
+close all;
+load('sim_11_ALL_new_5_30.mat')
+QR = 'QR10';
 label = {'x_d','x_0','x_d'};
-set_pos1 = 34.66;
-set_pos2 = 2;
+set_pos1 = 27.69;
+set_pos2 = 44.78;
 set_pos3 = 150;
 set_pos = [set_pos1,set_pos2,set_pos3];
-up_y = 0.5; down_y = -1; minx =30; maxx = 40; % axis definition
+up_y = 0.5; down_y = -1; minx =20; maxx = 50; % axis definition
 fig_ctrl = figure('units','normalized','outerposition',[0 0 1 1]);
 hold on
 plot(meas_ctrl.time,meas_ctrl.signals.values)
 xline(set_pos,'-',label)
 xlim([minx maxx]);
-title(strcat(QR,', 15degree set point, $\omega_{3}$, Real-time Output of Control signal $u = -K*(x-x_d)$'),'Interpreter','latex','FontSize',25);
+title(strcat(QR,', 15° set point, Real-time Output of Control signal u = -K*(x-x_d)'),'FontSize',25);
 legend('$u_{control}$','Interpreter','latex');
 xlabel('time [s]');ylabel('Voltage [V]');
-saveas(fig_ctrl, strcat(plot_dir,QR,'_setpoint_control_omega3.png'));
+saveas(fig_ctrl, strcat(plot_dir,QR,'_setpoint_control.png'));
 fig_states = figure('units','normalized','outerposition',[0 0 1 1]);
 subplot(4,1,1);hold on;
 plot(meas_states.time, meas_states.signals.values(:,1));
@@ -1015,47 +1149,5 @@ xline(set_pos,'-',label);
 plot(meas_states.time, meas_states.signals.values(:,4))
 title('Real-time Output of $\dot{\alpha}$ (equal to the state)','Interpreter','latex','FontSize',15)
 xlim([minx maxx]);xlabel('time [s]');ylabel('angular velocity [rad/s]');
-sgtitle(strcat(QR,', 15degree set point, $\omega_{3}$, Real-time Output of the estimated state'),'Interpreter','latex','FontSize',25);
-saveas(fig_states, strcat(plot_dir,QR,'_setpoint_states_omega3.png'));
-%% Plotting omega 3 disturbance
-close all;
-load('sim_13_ALL.mat')
-QR = 'QR8';
-label = {'Dist','Dist','Dist'};
-set_pos1 = 61.745;
-set_pos2 = 65.4;
-set_pos3 = 80;
-set_pos = [set_pos1,set_pos2,set_pos3];
-up_y = 0.5; down_y = -1; minx =58; maxx = 67; % axis definition
-fig_ctrl = figure('units','normalized','outerposition',[0 0 1 1]);
-hold on
-plot(meas_ctrl.time,meas_ctrl.signals.values)
-xline(set_pos,'-',label)
-xlim([minx maxx]);
-title(strcat(QR,' Disturbance rejection $\omega_{3}$ Real-time Output of Control signal $u = -K*(x-x_d$)'),'Interpreter','latex','FontSize',25);
-legend('$u_{control}$','Interpreter','latex');
-xlabel('time [s]');ylabel('Voltage [V]');
-saveas(fig_ctrl, strcat(plot_dir,QR,'_disturbance_control_omega3.png'));
-fig_states = figure('units','normalized','outerposition',[0 0 1 1]);
-subplot(4,1,1);hold on;
-plot(meas_states.time, meas_states.signals.values(:,1));
-xline(set_pos,'-',label);
-title('Real-time Output of $\theta$ (equal to the state)','Interpreter','latex','FontSize',15)
-xlim([minx maxx]);xlabel('time [s]');ylabel('angle [rad]');
-subplot(4,1,2);hold on;
-xline(set_pos,'-',label);
-plot(meas_states.time, meas_states.signals.values(:,2));
-title('Real-time Output of $\alpha$ (equal to the state)','Interpreter','latex','FontSize',15)
-xlim([minx maxx]);xlabel('time [s]');ylabel('angle [rad]');
-subplot(4,1,3);hold on;
-xline(set_pos,'-',label);
-plot(meas_states.time, meas_states.signals.values(:,3))
-title('Real-time Output of $\dot{\theta}$ (equal to the state)','Interpreter','latex','FontSize',15)
-xlim([minx maxx]);xlabel('time [s]');ylabel('angular velocity [rad/s]');
-subplot(4,1,4);hold on;
-xline(set_pos,'-',label);
-plot(meas_states.time, meas_states.signals.values(:,4))
-title('Real-time Output of $\dot{\alpha}$ (equal to the state)','Interpreter','latex','FontSize',15)
-xlim([minx maxx]);xlabel('time [s]');ylabel('angular velocity [rad/s]');
-sgtitle(strcat(QR,' Disturbance rejection $\omega_{3}$ Real-time Output of the estimated state'),'Interpreter','latex','FontSize',25);
-saveas(fig_states, strcat(plot_dir,QR,'_disturbance_states_omega3.png'));
+sgtitle(strcat(QR,', 15° set point, Real-time Output of the estimated state'),'FontSize',25);
+saveas(fig_states, strcat(plot_dir,QR,'_setpoint_states.png'));
