@@ -12,24 +12,24 @@
 %setting deisred closed loop properties for controller and estimator in
 %continuous time
 Ts = 0.05;
-% zeta_K = 0.8;
-% t_settling_K = 6; %[s]
-% zeta_L = 0.8;
-% t_settling_L = 0.6; %[s]
-zeta_K = 0.9;
-t_settling_K = 8; %[s]
-zeta_L = 0.9;
-t_settling_L = 0.8; %[s]
+zeta_K = 0.8;
+t_settling_K = 6; %[s]
+zeta_L = 0.8;
+t_settling_L = 0.6; %[s]
+% zeta_K = 0.9;
+% t_settling_K = 8; %[s]
+% zeta_L = 0.9;
+% t_settling_L = 0.8; %[s]
 pole_lst_K = pole_calc(12,t_settling_K,zeta_K);
 pole_lst_L = pole_calc(12,t_settling_L,zeta_L);
 
 % Discretizing the pole lists
 pole_lst_K_d = exp(Ts.*pole_lst_K);
 pole_lst_L_d = exp(Ts.*pole_lst_L);
-%% Placing the poles and computing controller/estimator gains
+%% Step 2: Placing the poles and computing controller/estimator gains
 K = place(A_d,B_d,pole_lst_K_d);
 L = place(A_d',C_d',pole_lst_L_d)';
-%% Running the controller - estimator simuling model
+%% Step 3: Running the controller - estimator simuling model
 A_est = A_d - L*C_d;
 init_est = zeros(12,1);
 B_est = cat(2,B_d-L*D_d,L);
