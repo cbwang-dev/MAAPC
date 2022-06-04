@@ -26,23 +26,6 @@ pole_lst_L = pole_calc(12,t_settling_L,zeta_L);
 % Discretizing the pole lists
 pole_lst_K_d = exp(Ts.*pole_lst_K);
 pole_lst_L_d = exp(Ts.*pole_lst_L);
-% a = 5.5;
-% nf = 2;
-% p_cl = [nf*(-0.8+0.6i)
-%         nf*(-0.8-0.6i)
-%         -2.1
-%         -a
-%         -a 
-%         -a 
-%         -a 
-%         -a - 0.01
-%         -a - 0.01
-%         -a - 0.01
-%         -a - 0.01
-%         -a - 0.02];
-%  
-% pole_lst_K_d = exp(Ts*p_cl);
-% pole_lst_L_d = exp(Ts*8.4*p_cl);
 %% Placing the poles and computing controller/estimator gains
 K = place(A_d,B_d,pole_lst_K_d);
 L = place(A_d',C_d',pole_lst_L_d)';
@@ -58,7 +41,6 @@ Nu = N(size(A_d,1)+1:end,:);
 Vmax = 100;
 set_angle = [0;0;0];
 Tmax = 50;
-u_e = g*m/(cm*k*4)*ones(4,1); %40.875
 sim("quadcopter_pole_placement_sim.slx", Tmax);
 generate_report(1);
 
